@@ -1,0 +1,37 @@
+name: Daily Learning Log Update
+on:
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update activity log
+        run: |
+          TODAY=$(date -u '+%Y-%m-%d')
+          if grep -q "^- $TODAY:" progress.md 2>/dev/null; then
+            echo "Entry for $TODAY already exists, skipping."
+          else
+            echo "- $TODAY: Continuing backend and C++ Level 1 practice." >> progress.md
+          fi
+
+      - name: Commit and push
+        run: |
+          git config user.name "EngMoaazMohamed"
+          git config user.email "moaaz.mohamed.eng@gmail.com"
+          git add progress.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: daily update to learning log"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push

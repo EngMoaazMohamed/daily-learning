@@ -3,10 +3,8 @@ on:
   schedule:
     - cron: "0 12 * * *"
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -19,9 +17,21 @@ jobs:
           TODAY=$(date -u '+%Y-%m-%d')
           if grep -q "^- $TODAY:" progress.md 2>/dev/null; then
             echo "Entry for $TODAY already exists, skipping."
-          else
-            echo "- $TODAY: Continuing backend and C++ Level 1 practice." >> progress.md
+            exit 0
           fi
+
+          MESSAGES=(
+            "Grinding through C++ and backend fundamentals 💻"
+            "Another day, another step closer to backend mastery 🚀"
+            "Practiced problem solving and reviewed core concepts 🧠"
+            "Kept the streak alive — backend + C++ practice 🔥"
+            "Small daily progress, big long-term gains 📈"
+            "Focused session on backend and low-level programming ⚙️"
+            "Consistency > intensity. Logged today's work ✅"
+          )
+          RANDOM_MSG=${MESSAGES[$RANDOM % ${#MESSAGES[@]}]}
+
+          echo "- $TODAY: $RANDOM_MSG" >> progress.md
 
       - name: Commit and push
         run: |

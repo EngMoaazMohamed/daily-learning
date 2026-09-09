@@ -7,3 +7,4 @@
 - 2026-09-06: Grinding through C++ and backend fundamentals 💻
 - 2026-09-07: Practiced problem solving and reviewed core concepts 🧠
 - 2026-09-08: Practiced problem solving and reviewed core concepts 🧠
+- 2026-09-09: Focused session on backend and low-level programming ⚙️

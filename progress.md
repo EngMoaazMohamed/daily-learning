@@ -29,3 +29,4 @@
 - 2026-09-28: Focused session on backend and low-level programming ⚙️
 - 2026-09-29: Focused session on backend and low-level programming ⚙️
 - 2026-09-30: Focused session on backend and low-level programming ⚙️
+- 2026-10-01: Focused session on backend and low-level programming ⚙️
